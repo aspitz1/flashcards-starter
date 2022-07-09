@@ -51,13 +51,13 @@ describe('Turn', () => {
         const isCorrect = turn.evaluateGuess();
         expect(isCorrect).to.equal(true);
 
-    })
+    });
 
     it('should say if guess is correct', () => {
         const feedBack = turn.giveFeedback();
         expect(feedBack).to.equal('correct!');
 
-    })
+    });
 
     it('should say if guess is incorrect', () => {
         turn.userGuess = 'array';

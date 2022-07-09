@@ -58,7 +58,8 @@ class Round {
 
     endRound() {
         return `** Round over! ** You answered ${this.calculatePercentCorrect()} of the questions correctly!`;
-    }
+        
+    };
 
 };
 
