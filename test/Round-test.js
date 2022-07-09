@@ -28,11 +28,6 @@ describe('Round', () => {
 
     });
 
-    it('should have current turn', () => {
-        expect(round.currentTurn).to.be.a.instanceOf(Turn);
-
-    });
-
     it('should return current card', () => {
         expect(round.currentCard).to.equal(deck.cards[0]);
 
@@ -52,8 +47,8 @@ describe('Round', () => {
 
     it('should create new Turn when guess is made', () => {
         const userGuess = deck.cards[0].answers[0];
-        round.takeTurn(userGuess, deck.cards[1]);
-        expect(round.currentTurn.currentCard).to.equal(deck.cards[1]);
+        round.takeTurn(userGuess, deck.cards[0]);
+        expect(round.currentTurn.currentCard).to.equal(deck.cards[0]);
 
     });
 
@@ -65,22 +60,11 @@ describe('Round', () => {
     });
 
     it('should keep track of right and wrong answers', () => {
-        let userGuess = deck.cards[0].answers[1];
-        round.takeTurn(userGuess, deck.cards[1]);
-        
-        userGuess = deck.cards[1].answers[0];
-        round.takeTurn(userGuess, deck.cards[2]);
-
-        userGuess = deck.cards[2].answers[0];
-        round.takeTurn(userGuess, deck.cards[3]);
-
-        userGuess = deck.cards[3].answers[0];
-        round.takeTurn(userGuess, deck.cards[4]);
-        
-        expect(round.guesses.wrong[0]).to.equal(deck.cards[0].id);
-        expect(round.guesses.wrong[1]).to.equal(deck.cards[3].id);
-        expect(round.guesses.right[0]).to.equal(deck.cards[1].id);
-        expect(round.guesses.right[1]).to.equal(deck.cards[2].id);
+        round.takeTurn("object");
+        round.takeTurn("object");
+        round.takeTurn("mutator method");
+        expect(round.guesses.right.length).to.equal(2);
+        expect(round.guesses.wrong.length).to.equal(1);
 
     });
 
@@ -96,17 +80,10 @@ describe('Round', () => {
     });
 
     it('should calculate percent of correct guesses', () => {
-        let userGuess = deck.cards[0].answers[1];
-        round.takeTurn(userGuess, deck.cards[1]);
-        
-        userGuess = deck.cards[1].answers[0];
-        round.takeTurn(userGuess, deck.cards[2]);
-
-        userGuess = deck.cards[2].answers[0];
-        round.takeTurn(userGuess, deck.cards[3]);
-
-        userGuess = deck.cards[3].answers[0];
-        round.takeTurn(userGuess, deck.cards[4]);
+        round.takeTurn("object");
+        round.takeTurn("object");
+        round.takeTurn("mutator method");
+        round.takeTurn("mutator method");
 
         const percentOfCorrect = round.calculatePercentCorrect();
         expect(percentOfCorrect).to.equal('50%');

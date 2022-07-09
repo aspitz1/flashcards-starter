@@ -20,9 +20,9 @@ class Round {
 
     takeTurn(id) {
         this.newTurn(id, this.currentCard);
+        const messege = this.evaluateGuess(id);
         this.addToTurnCounter();
         this.currentCard = this.deck[this.turnCount];
-        const messege = this.evaluateGuess();
         return messege;
 
     };
@@ -48,7 +48,6 @@ class Round {
 
     newTurn(userGuess, nextCard) {
         this.currentTurn = new Turn(userGuess, nextCard);
-        this.currentCard = this.currentTurn.returnCard();
 
     };    
 
